@@ -10,12 +10,18 @@ async function createLogEntryAsync() {
 		return
 	}
 	const root = folders[0].uri.fsPath
+	const configuration = vscode.workspace.getConfiguration("le")
+	const relativePath = configuration.get("newEntriesDefaultPath") as string
+	const fileNameTemplate = configuration.get("fileNameFormat") as string
+	const newEntryTemplate = configuration.get("newEntryTemplate") as string
 	const date = new Date()
-	const dateAsString = moment(date).format("YYYY-MM-DD - HH:mm")
-	const dateForPath = moment(date).format("YYYY-MM-DD-HH-mm")
-	const mdFile = dateForPath + ".md"
-	const file = path.join(root, mdFile)
-	fs.writeFileSync(file, `---\ntitle: ${dateAsString}\n---\n\n`)
+	const fileName = moment(date).format(fileNameTemplate)
+	// Looks like the config UI isn't smart, so we're replacing by the special character
+	const content = moment(date).format(newEntryTemplate
+		.replace(/\\n/g, "\n")
+		.replace(/\\t/g, "\t"))
+	const file = path.join(root, relativePath, fileName)
+	fs.writeFileSync(file, content)
 	vscode.window.showTextDocument(vscode.Uri.file(file))
 }
 

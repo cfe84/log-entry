@@ -1,6 +1,6 @@
 {
 	"name": "log-entry",
-	"displayName": "log-entry",
+	"displayName": "Log Entry",
 	"description": "Command to create a markdown log entry with a date format",
 	"version": "1.0.0",
 	"engines": {
@@ -21,6 +21,26 @@
 				"category": "Log Entry"
 			}
 		],
+		"configuration": {
+			"title": "Log entry",
+			"properties": {
+				"le.newEntriesDefaultPath": {
+					"type": "string",
+					"default": "",
+					"description": "Relative folder where to create new entries"
+				},
+				"le.fileNameFormat": {
+					"type": "string",
+					"default": "YYYY-MM-DD-HH-mm[.md]",
+					"description": "Moment.js format for new file names. Use [ ] to escape"
+				},
+				"le.newEntryTemplate": {
+					"type": "string",
+					"default": "[---\ntitle: ]YYYY-MM-DD - HH:mm[\n---\n\n]",
+					"description": "Template to be used for new entries, formatted with Moment.js. Use [ ] to escape"
+				}
+			}
+		},
 		"keybindings": []
 	},
 	"scripts": {
