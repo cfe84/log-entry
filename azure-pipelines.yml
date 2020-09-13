@@ -19,8 +19,7 @@ steps:
 
 - script: |
     npm install
-    npm run test
-  displayName: 'npm install and test'
+  displayName: 'npm install'
 
 - script: |
     npm install -g vsce
