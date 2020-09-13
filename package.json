@@ -2,7 +2,7 @@
 	"name": "log-entry",
 	"displayName": "Log Entry",
 	"description": "Command to create a markdown log entry with a date format",
-	"version": "1.0.0",
+	"version": "1.1.0",
 	"engines": {
 		"vscode": "^1.44.0"
 	},
